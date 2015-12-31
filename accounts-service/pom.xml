@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ibm.ecoddemo</groupId>
-	<artifactId>accounts-overview-ui</artifactId>
+	<artifactId>accounts-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -13,11 +13,11 @@
 	</parent>
 
 	<properties>
-		<start-class>com.ibm.ecoddemo.microservice.web</start-class>
+		<start-class>com.ibm.ecoddemo.microservice.account.AccountsService</start-class>
 	</properties>
-
+	
 	<dependencies>
-		<!-- spring cloud integration -->
+		<!-- spring cloud integration-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
@@ -27,38 +27,40 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-		<!-- spring web integration -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
 		<!-- spring configuration server integration -->
 		<dependency>
         	<groupId>org.springframework.cloud</groupId>
         	<artifactId>spring-cloud-starter-config</artifactId>
     	</dependency>
-    	<!-- spring Netflix OSS Eureka server & client integration -->
+    	<!-- register to Eureka service registry and discovery service -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka-server</artifactId>
 		</dependency>
-		<!-- spring Netflix OSS Hystrix circuit breaker integration -->
+		<!-- use REST controller and Embedded Tomcat -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-hystrix</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- use Thymeleaf to display error message -->
 		<dependency>
         	<groupId>org.springframework.boot</groupId>
-        	<artifactId>spring-boot-starter-actuator</artifactId>
-    	</dependency>
+        	<artifactId>spring-boot-starter-thymeleaf</artifactId>
+   		 </dependency>
+		<!-- spring data integration -->
 		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-			<version>2.10.4</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
+		<!-- spring data JPA integration -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- In-memory database for test & development -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
 		</dependency>
 	</dependencies>
 
