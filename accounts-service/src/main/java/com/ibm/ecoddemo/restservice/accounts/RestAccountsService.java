@@ -17,8 +17,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
 @SpringBootApplication
-@EntityScan("com.ibm.ecoddemo.restservice.account")
-@EnableJpaRepositories("com.ibm.ecoddemo.restservice.account")
+@EntityScan("com.ibm.ecoddemo.restservice.accounts")
+@EnableJpaRepositories("com.ibm.ecoddemo.restservice.accounts")
 @PropertySource("classpath:db-config/db-config.properties")
 public class RestAccountsService {
 
