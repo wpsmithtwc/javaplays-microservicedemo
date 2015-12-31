@@ -1,0 +1,448 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Accounts Overview Demo powered by Microservices on IBM Bluemix</title>
+	<meta charset="utf-8"/>
+	<link href="../static/css/demo.css" th:href="@{/api/demo/css/demo.css}" rel="stylesheet" media="screen"/>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+	<script src="../static/js/demo.js" th:src="@{/api/demo/js/demo.js}"></script>
+  	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  	<style></style>
+  	<!-- TOOL TIP SETUP -->
+  	<script>
+  		$(document).ready(function() {
+  			$( document ).tooltip( {
+  				track: true,
+  				show: {effect: "fade"}
+  			});
+  		});
+  	</script>
+  	
+  	<!-- TAB SETUP -->
+  	<script>
+  		$(document).ready(function() {
+			$( "#tabs" ).tabs();
+			$( "#tabs" ).resizable({
+				animate: true
+			});
+		});
+  	</script>
+  	
+  	<!-- ARCHITECTURE TAB ACCORDION SETUP  -->
+  	<script>
+  		$(document).ready(function() {
+  			var architecture_icons={
+  				header: "ui-icon-circle-arrow-e",
+  		    	activeHeader: "ui-icon-circle-arrow-s"
+  			};
+  			
+  			$( "#architecture_accordion" ).accordion({
+  				icons: architecture_icons,
+  				collapsible: true,
+  				active: false,
+  				heightStyle: "content"
+  			});
+  		});
+  	</script>
+  	
+  	<!-- DEMO TAB ACCORDION SETUP  -->
+  	<script>
+  		$(document).ready(function() {
+			var demo_icons={
+				header: "ui-icon-circle-arrow-e",
+	  		    activeHeader: "ui-icon-circle-arrow-s"
+			};
+			
+			$( "#demo_accordion" ).accordion({
+				icons: demo_icons,
+				collapsible: true,
+				active: false,
+				heightStyle: "content"
+			});
+		});
+  	</script>
+</head>
+
+<body>
+
+	<!-- PAGE TITLE -->
+	<h1>Accounts Overview Demo powered by Microservices on IBM Bluemix</h1>
+	
+	<!-- COPY RIGHT -->
+	<p style="font-style:italic">
+		@IBM Cloud EcoD, 2016: Demo built on Microservice Architecture powered by Spring Cloud and Boot on IBM Bluemix <br/>
+		Author: Daniel Cho, danielcho@us.ibm.com
+	</p>
+	
+	<!-- TARGET AUDIENCE -->
+	<h3>Target Audience</h3>
+		<p>Architects and developers whose interest is to learn:</p>
+		<ul>
+			<li>Core microservice platform components to enable runtime collaboration,</li>
+			<li>How a cluster of microservices on cloud works together to support a demo business application.</li>
+		</ul>
+		
+	<h3>What You Will Learn </h3>
+	<ul>
+		<li>Microservice powered by Spring Cloud running on Spring Boot</li>
+		<li>Place ponts here</li>
+	</ul>
+	
+	<!-- INTRODUCTION -->
+	<h3>Introduction</h3>
+		<p>
+			Rapid changes in business climates force supporting IT solutions to evolve as quickly within largely distributed teams and systems. Services employing <br/>
+			Microservice architecture have many benefits to thrive in such environment by providing loose coupling, autonomous services, decentralized governance, <br/>
+			fast fail and recovery.   
+		</p>
+		<p>
+			It is important to realize that we enter the realm of distributed systems as soon as we start decomposing a monolithic business application. There are <br/>
+			challenges with distributed systems that must be properly handled to avoid system wide failure.  It is fair to assume that the consistency and reliability <br/>
+			in a distributed system is difficult to guarantee, and the location of service components may constantly change or potentially disappear. <br/> 
+			Here are what you may consider:
+		</p>
+		<ul>
+			<li>How to consistently and reliably distribute configuration to distributed processes</li>
+			<li>How to determine the locations of processes that may collaborate during runtime without hard coding physical locations</li>
+			<li>How to decouple from the backend processes and control granularity of access using a set of APIs that matters to a business application</li>
+			<li>How to prevent cascading into a system wide failure from participating service fault conditions</li>
+			<li>How to load balance the use of distributed services</li>
+		</ul>
+		<p>The Accounts Overview demo is designed to address the challenges proposed to consider when building a business application on Microservice architecture.</p>
+	
+	<!-- TAB STARTS -->
+	<div id="tabs" class="ui-widget-content">
+	<!-- TAB HEADERS -->
+	  <ul>
+	    <li><a href="#architecture_tab" title="Check out the accounts overview demo architecture on microservice architecture.">Architecture</a></li>
+	    <li><a href="#demo_tab" title="Check out Accounts Overview demo working collaboratively with individual microservices.">Demo</a></li>
+	    <li><a href="#monitoring_tab" title="Check out Services health checks and circuit braker monitoring">Monitoring</a></li>
+	  </ul>
+	  
+	  <!-- ARCHITECTURE TAB -->
+	  <div id="architecture_tab">
+	    <p>Place Project overview, Demo functional requirement, Architecture decisions, Static architecture overview, and Dynamic component interaction diagrams here !</p>
+	    <div id="architecture_accordion">
+	    	<h3>Scope</h3>
+	    		<div>
+	    			<p> scope here</p>
+	    		</div>
+	    	<h3>Functional Use Cases</h3>
+	    		<div>
+	    			<p> usecases here</p>
+	    		</div>
+	    	<h3>Architectural Decisions</h3>
+	    		<div>
+	    			<p> decisions here</p>
+	    		</div>
+	    	<h3>Architecture Overview</h3>
+	    		<div>
+	    			<p> 
+	    				<strong>Accounts Overview Demo Architecture</strong>
+	    			</p>
+	    			<img src="../static/images/accounts_overview_architecture.png" th:src="@{/api/demo/images/accounts_overview_architecture.png}" alt="Accounts Overview Demo Architecture" />
+	    		</div>
+	    	<h3>Component Interaction</h3>
+	    		<div>
+	    			<p> component interaction here</p>
+	    		</div>
+	    </div> <!-- End of Architecture tab accordion -->
+	  </div>
+	  
+	  <!-- DEMO TAB -->
+	  <div id="demo_tab">
+	  	<p>Place Accounts Overview Microservices Demo here</p>
+	    <div id="demo_accordion">
+	    
+	    	<!-- HOW TO RUN -->
+	    	<h3>How To Run</h3>
+	    		<div>
+	    			<p> Place installation and run steps here. </p>
+	    		</div>
+	    	
+	    	<!-- CONFIGURAITON SERVICE -->
+	    	<h3>Configuration Service</h3>
+	    		<div>
+	    			<!-- Purpose -->
+	    			<p> 
+	    				<strong>Purpose</strong>
+	    			</p>
+	    			<ul>
+    					<li>Provides a centralized configuration service that is horizontally scalable.</li>
+    					<li>Uses a pluggable repository layer that supports local storage, Git as this demo, and Subversion.</li>
+    					<li>Easy to version and audit configuration changes using a version control system as its repository.</li>
+	    			</ul>
+	    			
+	    			<!-- Flow -->
+	    			<p> 
+	    				<strong>Flow</strong>
+	    			</p>
+	    			
+	    			<!-- Component -->
+	    			<p> 
+	    				<strong>Component</strong>
+	    			</p>
+	    			
+	    			<!-- Refresh all demo -->
+	    			<script>
+	    				$( function() {
+	    					$( "#refreshConfigurationServiceDemo" ).click(function (event) {
+	    						$( "#displayConfigurationServiceInfo" ).empty();
+	    						$( "#displayConfigurationServiceHealth" ).empty();
+	    						$( "#displayConfigurationServiceMetric" ).empty();
+	    						$( "#displayConfigurationServiceTrace" ).empty();
+	    						versionControlSiteWindow.close();
+	    					
+	    					});
+	    				});
+	    			</script>
+	    			<p> 
+	    				<strong>Access Configuration Service Repository and Monitoring Resources</strong>
+	    				<button id="refreshConfigurationServiceDemo"> Refresh Demo </button>
+	    			</p>
+	    			
+	    			<!-- Display Configuration Service External Repository -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showConfigurationServiceRepo" ).click(function (event) {
+	    						versionControlSiteWindow = window.open("/api/configurationrepo", "externalConfigurationRepository" );
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showConfigurationServiceRepo"> Click </button> to show configurations managed via GitHub, an external version control respository.
+	    			<br/>
+	    			<ul>
+	    				<li>Notice each configuration takes its corresponding service name defined in respective service's bootstrap.yml for its file name.</li>
+	    				<li>application.yml applies to all microservices whose configurations fetched from the configuration service server.</li>
+	    			</ul>
+	    			
+	    			<br/>
+	    			
+	    			<!-- Display Configuration Service Information -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showConfigurationServiceInfo" ).click(function (event) {
+	    						$( "#displayConfigurationServiceInfo" ).empty();
+	    						$( "#displayConfigurationServiceInfo" ).load("/api/configuration/info");
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showConfigurationServiceInfo"> Click </button> to show configuration service information using '/info' request.
+	    			<br/>
+	    			<div id="displayConfigurationServiceInfo" style="font-style:italic;color:blue"><!-- Display configuration service info here --></div>
+	    			
+	    			<br/>
+	    			
+	    			<!-- Display Configuration Service Health -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showConfigurationServiceHealth" ).click(function (event) {
+	    						$( "#displayConfigurationServiceHealth" ).empty();
+	    						$( "#displayConfigurationServiceHealth" ).load("/api/configuration/health");
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showConfigurationServiceHealth"> Click </button> to show configuration service status [health] using '/health' request.
+	    			<br/>
+	    			<div id="displayConfigurationServiceHealth" style="font-style:italic;color:blue"><!-- Display configuration service health here --></div>
+	    			
+	    			<br/>
+	    			
+	    			<!-- Display Configuration Service Metrics -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showConfigurationServiceMetric" ).click(function (event) {
+	    						$( "#displayConfigurationServiceMetric" ).empty();
+	    						$( "#displayConfigurationServiceMetric" ).load("/api/configuration/metrics");
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showConfigurationServiceMetric"> Click </button> to show configuration service metrics [resources] using '/metrics' request.
+	    			<br/>
+	    			<div id="displayConfigurationServiceMetric" style="font-style:italic;color:blue"><!-- Display configuration service metrics here --></div>
+	    			
+	    			<br/>
+	    			
+	    			<!-- Display Configuration Service Trace -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showConfigurationServiceTrace" ).click(function (event) {
+	    						$( "#displayConfigurationServiceTrace" ).empty();
+	    						$( "#displayConfigurationServiceTrace" ).load("/api/configuration/trace");
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showConfigurationServiceTrace"> Click </button> to show configuration service trace using '/trace' request.
+	    			<br/>
+	    			<div id="displayConfigurationServiceTrace" style="font-style:italic;color:blue"><!-- Display configuration service trace here --></div>
+	    			
+	    		</div>
+	    		
+	    	<!-- SERVICE REGISTRY AND DISCOVERY SERVICE -->
+	    	<h3>Service Registry and Discovery Service</h3>
+	    		<div>
+	    			<!-- Purpose -->
+	    			<p> 
+	    				<strong>Purpose</strong>
+	    			</p>
+	    			<ul>
+    					<li>Add here.</li>
+    					<li>Add here.</li>
+    					<li>Add here.</li>
+	    			</ul>
+	    			
+	    			<!-- Flow -->
+	    			<p> 
+	    				<strong>Flow</strong>
+	    			</p>
+	    			
+	    			<!-- Component -->
+	    			<p> 
+	    				<strong>Component</strong>
+	    			</p>
+	    			
+	    			<!-- Refresh all demo -->
+	    			<script>
+	    				$( function() {
+	    					$( "#refreshDiscoveryServiceDemo" ).click(function (event) {
+	    						$( "#displayDiscoveryServiceInfo" ).empty();
+	    						$( "#displayDiscoveryServiceHealth" ).empty();
+	    						$( "#displayDiscoveryServiceMetric" ).empty();
+	    						$( "#displayDiscoveryServiceTrace" ).empty();
+	    						discoveryServiceSiteWindow.close();
+	    					});
+	    				});
+	    			</script>
+	    			<p> 
+	    				<strong>Access Discovery Service Monitoring Resources</strong>
+	    				<button id="refreshDiscoveryServiceDemo"> Refresh Demo </button>
+	    			</p>
+	    			
+	    			<!-- Display Discovery Service Monitoring Site -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showDiscoveryServiceSite" ).click(function (event) {
+	    						discoveryServiceSiteWindow = window.open("/api/discovery", "discoveryServiceSite" );
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showDiscoveryServiceSite"> Click </button> to show Service Registry and Discovery Service monitoring site.
+	    			<br/>
+	    			<ul>
+	    				<li>Notice the list of each registered service using its corresponding service name defined in respective service's bootstrap.yml for its 
+	    				    logical name.  Logical service names are used by other microservices or api gateway in the demo to enable inner-process calls. Consequently, hard coding
+	    				    of service endpoints can be avoided entirely.  This is particularly beneficial for cloud services when there is no guarantee that service endpoints
+	    				    remain the same overtime.</li>
+	    				<li>Notice the service STATUS column with individual service's current status.   Click the link to see physical endpoints registered via the 
+	    				    Discovery service. Each service has different endpoint [host name, port number, and root context] as it is developed and maintained
+	    				    by different team at different server in real life.</li>
+	    			</ul>
+	    			
+	    			<br/>
+	    			
+	    			<!-- Display Discovery Service Information -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showDiscoveryServiceInfo" ).click(function (event) {
+	    						$( "#displayDiscoveryServiceInfo" ).empty();
+	    						$( "#displayDiscoveryServiceInfo" ).load("/api/discovery/info");
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showDiscoveryServiceInfo"> Click </button> to show discovery service information using '/info' request.
+	    			<br/>
+	    			<div id="displayDiscoveryServiceInfo" style="font-style:italic;color:blue"><!-- Display discovery service info here --></div>
+	    			
+	    			<br/>
+	    			
+	    			<!-- Display Discovery Service Health -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showDiscoveryServiceHealth" ).click(function (event) {
+	    						$( "#displayDiscoveryServiceHealth" ).empty();
+	    						$( "#displayDiscoveryServiceHealth" ).load("/api/discovery/health");
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showDiscoveryServiceHealth"> Click </button> to show discovery service status [health] using '/health' request.
+	    			<br/>
+	    			<div id="displayDiscoveryServiceHealth" style="font-style:italic;color:blue"><!-- Display discovery service health here --></div>
+	    			
+	    			<br/>
+	    			
+	    			<!-- Display Discovery Service Metrics -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showDiscoveryServiceMetric" ).click(function (event) {
+	    						$( "#displayDiscoveryServiceMetric" ).empty();
+	    						$( "#displayDiscoveryServiceMetric" ).load("/api/discovery/metrics");
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showDiscoveryServiceMetric"> Click </button> to show discovery service metrics [resources] using '/metrics' request.
+	    			<br/>
+	    			<div id="displayDiscoveryServiceMetric" style="font-style:italic;color:blue"><!-- Display discovery service metrics here --></div>
+	    			
+	    			<br/>
+	    			
+	    			<!-- Display Discovery Service Trace -->
+	    			<script>
+	    				$( function() {
+	    					$( "#showDiscoveryServiceTrace" ).click(function (event) {
+	    						$( "#displayDiscoveryServiceTrace" ).empty();
+	    						$( "#displayDiscoveryServiceTrace" ).load("/api/discovery/trace");
+	    					});
+	    				});
+	    			</script>
+	    			<button id="showDiscoveryServiceTrace"> Click </button> to show discovery service trace using '/trace' request.
+	    			<br/>
+	    			<div id="displayDiscoveryServiceTrace" style="font-style:italic;color:blue"><!-- Display discovery service trace here --></div>
+	    			
+	    		</div>
+	    	
+	    	<!-- API GATEWAY SERVICE -->
+	    	<h3>API Gateway Service with Service Choreographer</h3>
+	    		<div>
+	    			<p> Place api gateway microservice flow and demo here. </p>
+	    		</div>
+	    		
+	    	<!-- ACCOUNTS SERVICE -->
+	    	<h3>Accounts Service</h3>
+	    		<div>
+	    			<p> Place accounts microservice flow and demo here. </p>
+	    		</div>
+	    	
+	    	<!-- CUSTOMERS SERVICE -->
+	    	<h3>Customers Service</h3>
+	    		<div>
+	    			<p> Place customers microservice flow and demo here. </p>
+	    		</div>
+	    	
+	    	<!-- ACCOUNTS OVERVIEW -->
+	    	<h3>Accounts Overview Web: A Cluster of Microservices Working Together</h3>
+	    		<div>
+	    			<p> Place accounts overview microservice flow and demo here. </p>
+	    		</div>
+	    	
+	    	<!-- HOW TO DEPLOY TO BLUEMIX -->	
+	    	<h3>How To Deploy To Bluemix</h3>
+	    		<div>
+	    			<p> Place how to deploy to Bluemix here. </p>
+	    		</div>
+	    		
+	    </div> <!-- End of Demo tab accordion -->
+	  </div>
+	  
+	  <!-- MONITORING TAB -->
+	  <div id="monitoring_tab">
+	    <p>Place monitoring demo here - Circuit Braker and Log Trail</p>
+	   </div>
+	  
+	</div> 
+	<!-- END OF TABS -->
+
+</body>
+</html>

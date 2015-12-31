@@ -1,0 +1,15 @@
+# Accounts service information
+spring:
+  application:
+    name: accounts-overview-ui
+  freemarker:
+    enabled: false       
+  thymeleaf:
+    enabled: true
+    cache: false           
+    prefix: classpath:/templates/
+  cloud:
+    config:
+      uri: http://localhost:1111  # Talks to configuration service to get accounts-overview-ui.yml from GitHub to reaplace application.yml.
+      # for cloud foundry deploy: uri: ${vcap.services.configserver.credentials.uri:http://user:password@localhost:8888}
+      fail-fast: true  # Fail the client startup if configuration service is unreachable with an exception.
