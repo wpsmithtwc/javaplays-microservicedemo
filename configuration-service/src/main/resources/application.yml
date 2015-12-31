@@ -1,0 +1,17 @@
+# Service Description
+info: 
+  component: Confugration Service that pulls versioned configurations from GitHub for each microservice in distributed mode
+
+# Configuration Service Information
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/danielyhcho/javaplays-microservicedemo-config
+          #username: 
+          #password:
+  
+# HTTP Server
+server:
+  port: 1111
