@@ -1,0 +1,13 @@
+# Circuit Braker Dashboard service information
+spring:
+  application:
+    name: api-circuit-breaker-monitoring-service
+  freemarker:
+    enabled: true
+  thymeleaf:
+    cache: false
+  cloud:
+    config:
+      uri: http://localhost:1111  # Talks to configuration service to get circuit-breaker-dashboard-service.yml from GitHub to reaplace application.yml.
+      # for cloud foundry deploy: uri: ${vcap.services.configserver.credentials.uri:http://user:password@localhost:8888}
+      fail-fast: true  # Fail the client startup if configuration service is unreachable with an exception.
