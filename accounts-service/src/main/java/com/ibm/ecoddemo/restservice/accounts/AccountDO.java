@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "ACCOUNT")
 public class AccountDO implements Serializable {
@@ -87,6 +89,7 @@ public class AccountDO implements Serializable {
 	}
 
 	@OneToMany(targetEntity=TransactionDO.class, mappedBy="account", fetch=FetchType.LAZY)
+	@JsonManagedReference
 	private List<TransactionDO> transactions;
 	
 	public void addTransactions(TransactionDO transaction) {

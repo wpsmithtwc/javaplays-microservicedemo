@@ -15,7 +15,7 @@ import com.ibm.ecoddemo.restservice.customers.RestCustomersService;
 public class CustomersService {
 
 	@Autowired
-	protected CustomerRepository accountRepository;
+	protected CustomerRepository customerRepository;
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(CustomersService.class).web(true).run(args);

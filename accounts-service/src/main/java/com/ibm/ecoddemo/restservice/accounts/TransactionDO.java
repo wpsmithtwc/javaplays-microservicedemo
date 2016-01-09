@@ -2,7 +2,6 @@ package com.ibm.ecoddemo.restservice.accounts;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "TRANSACTION")
@@ -29,10 +30,10 @@ public class TransactionDO implements Serializable {
 	protected String acctNumber;
 
 	@Column(name = "TRANSDATE")
-	protected Date transDate;
+	protected String transDate;
 	
 	@Column(name = "POSTDATE")
-	protected Date postDate;
+	protected String postDate;
 	
 	@Column(name = "MERCHANT")
 	protected String merchant;
@@ -60,19 +61,19 @@ public class TransactionDO implements Serializable {
 		this.acctNumber = acctNumber;
 	}
 
-	public Date getTransDate() {
+	public String getTransDate() {
 		return transDate;
 	}
 
-	public void setTransDate(Date transDate) {
+	public void setTransDate(String transDate) {
 		this.transDate = transDate;
 	}
 
-	public Date getPostDate() {
+	public String getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(Date postDate) {
+	public void setPostDate(String postDate) {
 		this.postDate = postDate;
 	}
 
@@ -90,6 +91,7 @@ public class TransactionDO implements Serializable {
 	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="ACCTNUMBER", referencedColumnName="NUMBER", insertable=false, updatable=false)
+	@JsonBackReference
 	private AccountDO account;
 
 	public AccountDO getAccount() {
