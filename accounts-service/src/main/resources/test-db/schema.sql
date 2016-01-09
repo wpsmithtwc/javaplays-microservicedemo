@@ -1,6 +1,22 @@
-drop table ACCOUNT if exists;
+DROP TABLE ACCOUNT IF EXISTS;
 
-create table ACCOUNT (ID bigint identity primary key, NUMBER varchar(9),
-                        NAME varchar(50) not null, BALANCE decimal(8,2), unique(NUMBER));
+CREATE TABLE ACCOUNT (	ID BIGINT IDENTITY PRIMARY KEY,
+						ACCTTYPE VARCHAR(15),
+						NUMBER VARCHAR(9),
+                        OWNER VARCHAR(50) NOT NULL,
+                        BALANCE DECIMAL(8,2), 
+                        UNIQUE(NUMBER));
                         
 ALTER TABLE ACCOUNT ALTER COLUMN BALANCE SET DEFAULT 0.0;
+
+DROP TABLE TRANSACTIOIN IF EXISTS;
+
+CREATE TABLE TRANSACTION  ( ID BIGINT IDENTITY PRIMARY KEY, 
+						ACCTNUMBER VARCHAR(9) REFERENCES ACCOUNT(NUMBER),
+						TRANSDATE TIMESTAMP,
+						POSTDATE TIMESTAMP,
+                        MERCHANT VARCHAR(50),
+                        AMOUNT DECIMAL(8,2));
+
+ALTER TABLE TRANSACTION ALTER COLUMN AMOUNT SET DEFAULT 0.0;
+          

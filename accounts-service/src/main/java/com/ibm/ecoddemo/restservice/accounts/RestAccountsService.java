@@ -29,7 +29,7 @@ public class RestAccountsService {
 	@Bean
 	public DataSource dataSource() {
 		/* create in-memory database for now.
-		 * TODO: replace with a cloud db */
+		 * TODO: replace with a cloud SQL DB */
 		DataSource dataSource = (new EmbeddedDatabaseBuilder())
 				.addScript("classpath:test-db/schema.sql")
 				.addScript("classpath:test-db/data.sql").build();

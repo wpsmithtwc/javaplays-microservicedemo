@@ -19,11 +19,11 @@ public class RestAccountsController {
 
 	@RequestMapping("/test")
 	public String testService() {
-		return "Test message: Accounts Service is up and running";
+		return "Test message: Accounts Rest Service is up and running";
 	}
 	
 	@RequestMapping("/searchby/number/{accountNumber}")
-	public AccountDO byNumber(@PathVariable("accountNumber") String accountNumber) {
+	public AccountDO searchByNumber(@PathVariable("accountNumber") String accountNumber) {
 		AccountDO account = accountRepository.findByNumber(accountNumber);
 
 		if (account == null)
@@ -34,7 +34,7 @@ public class RestAccountsController {
 	}
 
 	@RequestMapping("/searchby/owner/{name}")
-	public List<AccountDO> byOwner(@PathVariable("name") String partialName) {
+	public List<AccountDO> searchByOwner(@PathVariable("name") String partialName) {
 
 		List<AccountDO> accounts = accountRepository
 				.findByOwnerContainingIgnoreCase(partialName);
