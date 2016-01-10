@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestAccountsController {
 
-	protected AccountRepository accountRepository;
+	protected AccountDAO accountDao;
 
 	@Autowired
-	public RestAccountsController(AccountRepository accountRepository) {
-		this.accountRepository = accountRepository;
+	public RestAccountsController(AccountDAO accountDao) {
+		this.accountDao = accountDao;
 	}
 
 	@RequestMapping("/test")
@@ -24,7 +24,7 @@ public class RestAccountsController {
 	
 	@RequestMapping("/searchby/number/{accountNumber}")
 	public AccountDO searchByNumber(@PathVariable("accountNumber") String accountNumber) {
-		AccountDO account = accountRepository.findByNumber(accountNumber);
+		AccountDO account = accountDao.findByNumber(accountNumber);
 
 		if (account == null)
 			throw new AccountNotFoundException(accountNumber);
@@ -36,7 +36,7 @@ public class RestAccountsController {
 	@RequestMapping("/searchby/owner/{name}")
 	public List<AccountDO> searchByOwner(@PathVariable("name") String partialName) {
 
-		List<AccountDO> accounts = accountRepository
+		List<AccountDO> accounts = accountDao
 				.findByOwnerContainingIgnoreCase(partialName);
 
 		if (accounts == null || accounts.size() == 0)

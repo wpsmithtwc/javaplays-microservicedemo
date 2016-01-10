@@ -6,7 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Import;
 
-import com.ibm.ecoddemo.restservice.accounts.AccountRepository;
+import com.ibm.ecoddemo.restservice.accounts.AccountDAO;
 import com.ibm.ecoddemo.restservice.accounts.RestAccountsService;
 	
 @SpringBootApplication
@@ -15,7 +15,7 @@ import com.ibm.ecoddemo.restservice.accounts.RestAccountsService;
 public class AccountsService {
 
 	@Autowired
-	protected AccountRepository accountRepository;
+	protected AccountDAO accountDao;
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(AccountsService.class).web(true).run(args);

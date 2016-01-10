@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
-public interface AccountRepository extends Repository<AccountDO, Long> {
+public interface AccountDAO extends Repository<AccountDO, Long> {
 
 	public AccountDO findByNumber(String accountNumber);
 
