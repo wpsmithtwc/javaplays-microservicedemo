@@ -8,7 +8,7 @@ public class CustomerNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public CustomerNotFoundException(String customerId) {
-		super("No such customer: " + customerId);
+	public CustomerNotFoundException(String searchBy) {
+		super("No such customer found: " + searchBy);
 	}
 }

@@ -10,39 +10,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestCustomersController {
 
-	protected CustomerRepository customerRepository;
-
 	@Autowired
-	public RestCustomersController(CustomerRepository accountRepository) {
-		this.customerRepository = accountRepository;
-	}
+	protected CustomerDAO customerDao;
 
 	@RequestMapping("/test")
 	public String testService() {
 		return "Test message: Customers Service is up and running";
 	}
 	
-	@RequestMapping("/searchby/id/{customerId}")
-	public CustomerDO byNumber(@PathVariable("accountNumber") String accountNumber) {
-		CustomerDO account = customerRepository.findByNumber(accountNumber);
+	@RequestMapping("/searchby/number/{customerNo}")
+	public CustomerDO byNumber(@PathVariable("customerNo") String customerNo) {
+		CustomerDO customer = customerDao.findByCustomerNo(customerNo);
 
-		if (account == null)
-			throw new CustomerNotFoundException(accountNumber);
+		if (customer == null)
+			throw new CustomerNotFoundException(customerNo);
 		else {
-			return account;
+			return customer;
 		}
 	}
 
-	@RequestMapping("/searchby/owner/{name}")
+	@RequestMapping("/searchby/name/{name}")
 	public List<CustomerDO> byOwner(@PathVariable("name") String partialName) {
 
-		List<CustomerDO> accounts = customerRepository
-				.findByOwnerContainingIgnoreCase(partialName);
+		List<CustomerDO> customers = customerDao.findByNameContainingIgnoreCase(partialName);
 
-		if (accounts == null || accounts.size() == 0)
+		if (customers == null || customers.size() == 0)
 			throw new CustomerNotFoundException(partialName);
 		else {
-			return accounts;
+			return customers;
 		}
 	}
 }

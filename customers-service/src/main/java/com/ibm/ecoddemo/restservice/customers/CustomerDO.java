@@ -1,10 +1,11 @@
 package com.ibm.ecoddemo.restservice.customers;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,31 +18,32 @@ public class CustomerDO implements Serializable {
 	public static Long nextId = 0L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	protected Long id;
+	
+	@Column(name= "CUSTOMERNO")
+	protected String customerNo;
+	
+	@Column(name= "NAME")
+	protected String name;
 
-	protected String number;
+	@Column(name= "ADDRESS")
+	protected String address;
 
-	@Column(name = "name")
-	protected String owner;
+	@Column(name = "CITY")
+	protected String city;
 
-	protected BigDecimal balance;
-
-	protected static Long getNextId() {
-		synchronized (nextId) {
-			return nextId++;
-		}
-	}
-
-	protected CustomerDO() {
-		balance = BigDecimal.ZERO;
-	}
-
-	public CustomerDO(String number, String owner) {
-		id = getNextId();
-		this.number = number;
-		this.owner = owner;
-		balance = BigDecimal.ZERO;
-	}
+	@Column(name = "STATE")
+	protected String state;
+	
+	@Column(name = "ZIPCODE")
+	protected String zipCode;
+	
+	@Column(name = "PHONE")
+	protected String phone;
+	
+	@Column(name = "EMAIL")
+	protected String email;
 
 	public long getId() {
 		return id;
@@ -51,37 +53,68 @@ public class CustomerDO implements Serializable {
 		this.id = id;
 	}
 
-	public String getNumber() {
-		return number;
+	public String getCustomerNo() {
+		return customerNo;
 	}
 
-	protected void setNumber(String accountNumber) {
-		this.number = accountNumber;
+	public void setCustomerNo(String customerNo) {
+		this.customerNo = customerNo;
 	}
 
-	public String getOwner() {
-		return owner;
+	public String getName() {
+		return name;
 	}
 
-	protected void setOwner(String owner) {
-		this.owner = owner;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public BigDecimal getBalance() {
-		return balance.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+	public String getAddress() {
+		return address;
 	}
 
-	public void withdraw(BigDecimal amount) {
-		balance.subtract(amount);
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public void deposit(BigDecimal amount) {
-		balance.add(amount);
+	public String getCity() {
+		return city;
 	}
 
-	@Override
-	public String toString() {
-		return number + " [" + owner + "]: $" + balance;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }

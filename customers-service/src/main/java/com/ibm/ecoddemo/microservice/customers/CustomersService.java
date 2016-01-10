@@ -6,7 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Import;
 
-import com.ibm.ecoddemo.restservice.customers.CustomerRepository;
+import com.ibm.ecoddemo.restservice.customers.CustomerDAO;
 import com.ibm.ecoddemo.restservice.customers.RestCustomersService;
 	
 @SpringBootApplication
@@ -15,7 +15,7 @@ import com.ibm.ecoddemo.restservice.customers.RestCustomersService;
 public class CustomersService {
 
 	@Autowired
-	protected CustomerRepository customerRepository;
+	protected CustomerDAO customerDao;
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(CustomersService.class).web(true).run(args);
