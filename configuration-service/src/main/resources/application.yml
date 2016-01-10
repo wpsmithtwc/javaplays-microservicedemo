@@ -9,7 +9,7 @@ spring:
       server:
         git:
           uri: https://github.com/danielyhcho/javaplays-microservicedemo-config
-          #username: 
+          #username: prefer to generate authoriztion key instead of using username and password.
           #password:
   
 # HTTP Server

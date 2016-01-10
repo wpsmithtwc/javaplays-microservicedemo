@@ -1,7 +1,7 @@
 # Accounts service information
 spring:
   application:
-    name: accounts-service
+    name: customers-service
   freemarker:
     enabled: false       
   thymeleaf:
