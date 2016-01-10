@@ -36,6 +36,9 @@ public class AccountDO implements Serializable {
 
 	@Column(name = "OWNER")
 	protected String owner;
+	
+	@Column(name= "CUSTOMERNO")
+	protected String customerNo;
 
 	@Column(name = "BALANCE")
 	protected BigDecimal balance;
@@ -74,6 +77,14 @@ public class AccountDO implements Serializable {
 
 	protected void setOwner(String owner) {
 		this.owner = owner;
+	}
+
+	public String getCustomerNo() {
+		return customerNo;
+	}
+
+	public void setCustomerNo(String customerNo) {
+		this.customerNo = customerNo;
 	}
 
 	public BigDecimal getBalance() {

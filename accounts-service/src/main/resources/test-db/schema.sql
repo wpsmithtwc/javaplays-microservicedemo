@@ -4,6 +4,7 @@ CREATE TABLE ACCOUNT (	ID BIGINT IDENTITY PRIMARY KEY,
 						ACCTTYPE VARCHAR(15),
 						NUMBER VARCHAR(9),
                         OWNER VARCHAR(50) NOT NULL,
+                        CUSTOMERNO VARCHAR(15),
                         BALANCE DECIMAL(8,2), 
                         UNIQUE(NUMBER));
                         

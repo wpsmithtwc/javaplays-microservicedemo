@@ -1,23 +1,5 @@
-
-insert into ACCOUNT (NUMBER, NAME) values ('111111111', 'Daniel Cho');
-insert into ACCOUNT (NUMBER, NAME) values ('111111112', 'Bala Vellanki');
-insert into ACCOUNT (NUMBER, NAME) values ('111111113', 'Brian Inns');
-insert into ACCOUNT (NUMBER, NAME) values ('111111114', 'Edward Dyll');
-insert into ACCOUNT (NUMBER, NAME) values ('111111115', 'David Carew');
-insert into ACCOUNT (NUMBER, NAME) values ('111111116', 'Kal Patel');
-insert into ACCOUNT (NUMBER, NAME) values ('111111117', 'Kyle Aaron');
-insert into ACCOUNT (NUMBER, NAME) values ('111111118', 'Lasks Srinivasan');
-insert into ACCOUNT (NUMBER, NAME) values ('111111119', 'Lennart Frantzell');
-insert into ACCOUNT (NUMBER, NAME) values ('111111120', 'Linda Richman');
-insert into ACCOUNT (NUMBER, NAME) values ('111111121', 'Peyling Hsieh');
-insert into ACCOUNT (NUMBER, NAME) values ('111111122', 'Sandhya Kapoor');
-insert into ACCOUNT (NUMBER, NAME) values ('111111123', 'Shu Sia Lukito');
-insert into ACCOUNT (NUMBER, NAME) values ('111111124', 'Timofey Nevolin');
-insert into ACCOUNT (NUMBER, NAME) values ('111111125', 'Tim Robinson');
-insert into ACCOUNT (NUMBER, NAME) values ('111111126', 'Tim Bedard');
-insert into ACCOUNT (NUMBER, NAME) values ('111111127', 'Pawan Nawange');
-insert into ACCOUNT (NUMBER, NAME) values ('111111128', 'Gana Pichumani');
-insert into ACCOUNT (NUMBER, NAME) values ('111111129', 'Jeff Alter');
-insert into ACCOUNT (NUMBER, NAME) values ('111111130', 'Nicole Baker');
-insert into ACCOUNT (NUMBER, NAME) values ('111111131', 'Lisa Schenkewitz');
-insert into ACCOUNT (NUMBER, NAME) values ('111111132', 'Jan Borowski');
+INSERT INTO ACCOUNT (CUSTOMERNO, NAME, ADDRESS, CITY, STATE, ZIPCODE, PHONE, EMAIL) VALUES ('A111111111', 'Daniel Cho', '4756 Harbor Drive', 'Atlanta', 'Georgia', '30040', '678.465.3726', 'danielcho@us.ibm.com');
+INSERT INTO ACCOUNT (CUSTOMERNO, NAME, ADDRESS, CITY, STATE, ZIPCODE, PHONE, EMAIL) VALUES ('A111111112', 'Bala Vellanki', '1234 Lookout Drive', 'New York', 'New York', '10001', '718.576.1234', 'balavellanki@us.ibm.com');
+INSERT INTO ACCOUNT (CUSTOMERNO, NAME, ADDRESS, CITY, STATE, ZIPCODE, PHONE, EMAIL) VALUES ('A111111113', 'Kal Patel', '4567 Windmere Drive', 'Herndon', 'West Virginia', '25025', '571.968.8736', 'kalpatel@us.ibm.com');
+INSERT INTO ACCOUNT (CUSTOMERNO, NAME, ADDRESS, CITY, STATE, ZIPCODE, PHONE, EMAIL) VALUES ('A111111114', 'Edward Dyll', '8912 Marketplace Drive', 'Richmond', 'Virginia', '23450', '804.345.7863', 'edwarddyll@us.ibm.com');
+INSERT INTO ACCOUNT (CUSTOMERNO, NAME, ADDRESS, CITY, STATE, ZIPCODE, PHONE, EMAIL) VALUES ('A111111115', 'David Carew', '3456 Holly Drive', 'Chicago', 'Illinois', '60290', '773.465.3746', 'davidcarew@us.ibm.com');
