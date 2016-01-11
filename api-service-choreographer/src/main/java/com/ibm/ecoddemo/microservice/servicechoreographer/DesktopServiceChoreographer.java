@@ -15,25 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DesktopServiceChoreographer {
 	
-	private @Resource(name="accountsServiceClient") AccountsServiceClient accountServiceClient;
+	private @Resource(name="accountsServiceClient") AccountsServiceClient accountsServiceClient;
+	private @Resource(name="customersServiceClient") CustomersServiceClient customersServiceClient;
 	
 	@RequestMapping("/accounts/findby/number/{accountNumber}")
 	public AccountDTO findByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
-		return accountServiceClient.searchByNumber(accountNumber);
+		return accountsServiceClient.searchByNumber(accountNumber);
 	}
 
 	@RequestMapping("/accounts/findby/name/{name}")
 	public List<AccountDTO> findByAccountOwnerName(@PathVariable("name") String partialName) {
-		return accountServiceClient.searchByOwnerContains(partialName);
+		return accountsServiceClient.searchByOwnerContains(partialName);
 	}
 	
-	@RequestMapping("/customers/findby/number/{customerId}")
-	public String findByCustomerId(@PathVariable("customerId") String customerId) {
-		return "findByCustomerId reachable";
+	@RequestMapping("/customers/findby/number/{customerNo}")
+	public CustomerDTO findByCustomerId(@PathVariable("customerNo") String customerNo) {
+		return customersServiceClient.searchByNumber(customerNo);
 	}
 
 	@RequestMapping("/customers/findby/name/{name}")
-	public String findByCustomerName(@PathVariable("name") String partialName) {
-		return "findByCustomerName reachable";
+	public List<CustomerDTO> findByCustomerName(@PathVariable("name") String partialName) {
+		return customersServiceClient.searchByNameContains(partialName);
 	}
 }

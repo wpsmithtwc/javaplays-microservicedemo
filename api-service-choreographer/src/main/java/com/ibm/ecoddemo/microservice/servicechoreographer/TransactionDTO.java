@@ -20,6 +20,12 @@ public class TransactionDTO {
 	protected BigDecimal amount;
 
 	protected TransactionDTO() {
+		/* setup default value */
+		id = Long.valueOf(0);
+		acctNumber = "";
+		transDate = "";
+		postDate = "";
+		merchant = "";
 		amount = BigDecimal.ZERO;
 	}
 

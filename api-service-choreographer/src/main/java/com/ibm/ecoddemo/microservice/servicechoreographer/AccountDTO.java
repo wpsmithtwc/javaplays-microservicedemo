@@ -26,7 +26,14 @@ public class AccountDTO {
 	 * Default constructor for JPA only.
 	 */
 	public AccountDTO() {
+		/* setup defualt values */
+		id = Long.valueOf(0);
+		acctType = "";
+		number = "";
+		owner = "";
+		customerNo = "";
 		balance = BigDecimal.ZERO;
+		
 	}
 
 	public long getId() {

@@ -17,8 +17,8 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
  * @author danielcho
  *
  */
-@Component(value="accountsServiceClient")
-public class AccountsServiceClient {
+@Component(value="customersServiceClient")
+public class CustomersServiceClient {
 
 	/* Purpose: RestTemplate
 	 * 1. Auto-configured by Spring Cloud to use a custom HttpRequestClient using Netflix Ribbon
@@ -32,7 +32,7 @@ public class AccountsServiceClient {
 
 	/* injects accounts logical service id from servicename.properties
 	 * initially registered to service registry, Eureka in this demo */
-	private @Value("${accounts.service.url.logical}") String serviceUrl;
+	private @Value("${customers.service.url.logical}") String serviceUrl;
 	
 	/*TIP
 	 * Use Aspect for Circuit Breaker pattern to be applied if you prefer non intrusive nature to
@@ -43,39 +43,37 @@ public class AccountsServiceClient {
 	 * to do in case of failure.
 	 * */
 	@HystrixCommand(fallbackMethod="searchByNumberFallback")
-	public AccountDTO searchByNumber(String accountNumber) {
-		return restTemplate.getForObject(serviceUrl + "/searchby/number/{accountNumber}", AccountDTO.class, accountNumber);
+	public CustomerDTO searchByNumber(String customerNo) {
+		return restTemplate.getForObject(serviceUrl + "/searchby/number/{customerNo}", CustomerDTO.class, customerNo);
 	}
 	
-	/* This method will be called when Accounts Service is not available. */
-	public AccountDTO searchByNumberFallback(String accountNumber) {
-		AccountDTO accountNotFound = new AccountDTO();
-		accountNotFound.addTransactions(new TransactionDTO());
-		accountNotFound.setNumber("Unable to find due to Accounts Service Not Available or Not Found with account number " + accountNumber);
-		return accountNotFound;
+	/* This method will be called when Customers Service is not available. */
+	public CustomerDTO searchByNumberFallback(String customerNo) {
+		CustomerDTO customerNotFound = new CustomerDTO();
+		customerNotFound.setCustomerNo("Unable to find due to Customers Service Not Available or Not Found with customer ID " + customerNo);
+		return customerNotFound;
 	}
 
-	@HystrixCommand(fallbackMethod="searchByOwnerContainsFallback")
-	public List<AccountDTO> searchByOwnerContains(String name) {
-		AccountDTO[] accounts = null;
+	@HystrixCommand(fallbackMethod="searchByNameContainsFallback")
+	public List<CustomerDTO> searchByNameContains(String name) {
+		CustomerDTO[] customers = null;
 
 		try {
-			accounts = restTemplate.getForObject(serviceUrl + "/searchby/owner/{name}", AccountDTO[].class, name);
+			customers = restTemplate.getForObject(serviceUrl + "/searchby/name/{name}", CustomerDTO[].class, name);
 		} catch (HttpClientErrorException e) {
 			// Not Found
 		}
 
-		if (accounts == null || accounts.length == 0)
+		if (customers == null || customers.length == 0)
 			return null;
 		else
-			return Arrays.asList(accounts);
+			return Arrays.asList(customers);
 	}
 	
-	public List<AccountDTO> searchByOwnerContainsFallback(String name) {
-		AccountDTO accountNotFound = new AccountDTO();
-		accountNotFound.addTransactions(new TransactionDTO());
-		accountNotFound.setOwner("Unable to find due to Accounts Service Not Available or Not Found with owner " + name);
-		return Arrays.asList(accountNotFound);
+	public List<CustomerDTO> searchByOwnerContainsFallback(String name) {
+		CustomerDTO customerNotFound = new CustomerDTO();
+		customerNotFound.setName("Unable to find due to Customers Service Not Available or Not Found with name " + name);
+		return Arrays.asList(customerNotFound);
 	}
 	
 }
