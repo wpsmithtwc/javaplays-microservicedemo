@@ -70,7 +70,7 @@ public class CustomersServiceClient {
 			return Arrays.asList(customers);
 	}
 	
-	public List<CustomerDTO> searchByOwnerContainsFallback(String name) {
+	public List<CustomerDTO> searchByNameContainsFallback(String name) {
 		CustomerDTO customerNotFound = new CustomerDTO();
 		customerNotFound.setName("Unable to find due to Customers Service Not Available or Not Found with name " + name);
 		return Arrays.asList(customerNotFound);
