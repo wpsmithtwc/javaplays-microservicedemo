@@ -5,19 +5,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/accounts")
 public class AccountsServiceChoreographer {
 	
-	@RequestMapping("/api/accounts")
+	@RequestMapping("/test")
 	public String testMessage() {
-		return "AccountsServiceChoreographer runs properly";
+		return "Accounts Service Choreographer runs properly";
 	}
 	
-	@RequestMapping("/api/accounts/findby/number/{accountNumber}")
+	@RequestMapping("/findby/number/{accountNumber}")
 	public String findByNumber(@PathVariable("accountNumber") String accountNumber) {
 		return "findByNumber reachable";
 	}
 
-	@RequestMapping("/api/accounts/findby/owner/{name}")
+	@RequestMapping("/findby/owner/{name}")
 	public String findByOwner(@PathVariable("name") String partialName) {
 		return "findByOwner reachable";
 	}
