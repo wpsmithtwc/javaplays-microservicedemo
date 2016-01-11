@@ -16,6 +16,7 @@ public class DesktopServiceChoreographer {
 	public String findByAccountOwnerName(@PathVariable("name") String partialName) {
 		return "findByAccountOwnerName reachable";
 	}
+	
 	@RequestMapping("/customers/findby/number/{customerId}")
 	public String findByCustomerId(@PathVariable("customerId") String customerId) {
 		return "findByCustomerId reachable";
