@@ -4,14 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.context.annotation.Import;
-
-import com.ibm.ecoddemo.microservice.servicechoreographer.ServiceChoreographer;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableZuulProxy
-@Import(ServiceChoreographer.class)
+//@Import(ServiceChoreographer.class)
 public class APIGatewayService {
 
 	/*
