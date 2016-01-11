@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("mobile")
+@RequestMapping("/mobile")
 public class MobileServiceChoreographer {
 	
 	@RequestMapping("/findby/number/{accountNumber}")
