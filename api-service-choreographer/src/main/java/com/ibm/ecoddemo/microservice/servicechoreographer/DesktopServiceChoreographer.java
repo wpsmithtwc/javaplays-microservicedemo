@@ -1,15 +1,23 @@
 package com.ibm.ecoddemo.microservice.servicechoreographer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author danielcho
+ *
+ */
 @RestController
 public class DesktopServiceChoreographer {
 	
+	@Autowired
+	private AccountsServiceClient accountServiceClient;
+	
 	@RequestMapping("/accounts/findby/number/{accountNumber}")
-	public String findByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
-		return "findByAccountNumber reachable";
+	public AccountDTO findByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
+		return accountServiceClient.searchByNumber(accountNumber);
 	}
 
 	@RequestMapping("/accounts/findby/name/{name}")

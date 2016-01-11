@@ -1,21 +1,31 @@
 package com.ibm.ecoddemo.microservice.servicechoreographer;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+/**
+ * 
+ * @author danielcho
+ *
+ */
 @JsonRootName("Account")
 public class AccountDTO {
 
-	protected Long id;
-	protected String number;
-	protected String owner;
-	protected BigDecimal balance;
+	private Long id;
+	private String acctType;
+	private String number;
+	private String owner;
+	private String customerNo;
+	private BigDecimal balance;
+	private List<TransactionDTO> transactions;
 
 	/**
 	 * Default constructor for JPA only.
 	 */
-	protected AccountDTO() {
+	public AccountDTO() {
 		balance = BigDecimal.ZERO;
 	}
 
@@ -23,13 +33,7 @@ public class AccountDTO {
 		return id;
 	}
 
-	/**
-	 * Set JPA id - for testing and JPA only. Not intended for normal use.
-	 * 
-	 * @param id
-	 *            The new id.
-	 */
-	protected void setId(long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -37,7 +41,7 @@ public class AccountDTO {
 		return number;
 	}
 
-	protected void setNumber(String accountNumber) {
+	public void setNumber(String accountNumber) {
 		this.number = accountNumber;
 	}
 
@@ -45,22 +49,44 @@ public class AccountDTO {
 		return owner;
 	}
 
-	protected void setOwner(String owner) {
+	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+	
+	public String getAcctType() {
+		return acctType;
+	}
+
+	public void setAcctType(String acctType) {
+		this.acctType = acctType;
+	}
+
+	public String getCustomerNo() {
+		return customerNo;
+	}
+
+	public void setCustomerNo(String customerNo) {
+		this.customerNo = customerNo;
 	}
 
 	public BigDecimal getBalance() {
 		return balance.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 
-	protected void setBalance(BigDecimal value) {
+	public void setBalance(BigDecimal value) {
 		balance = value;
 		balance.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
+	
+	public void addTransactions(TransactionDTO transaction) {
+		if (transactions == null) {
+			transactions = new ArrayList<TransactionDTO>(0);
+		}
+		transactions.add(transaction);
+	}
 
-	@Override
-	public String toString() {
-		return number + " [" + owner + "]: $" + balance;
+	public List<TransactionDTO> getTransactions() {
+		return transactions;
 	}
 
 }
