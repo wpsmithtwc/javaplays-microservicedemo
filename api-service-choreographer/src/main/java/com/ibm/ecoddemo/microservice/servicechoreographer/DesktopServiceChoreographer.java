@@ -1,6 +1,9 @@
 package com.ibm.ecoddemo.microservice.servicechoreographer;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DesktopServiceChoreographer {
 	
-	@Autowired
-	private AccountsServiceClient accountServiceClient;
+	private @Resource(name="accountsServiceClient") AccountsServiceClient accountServiceClient;
 	
 	@RequestMapping("/accounts/findby/number/{accountNumber}")
 	public AccountDTO findByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
@@ -21,8 +23,8 @@ public class DesktopServiceChoreographer {
 	}
 
 	@RequestMapping("/accounts/findby/name/{name}")
-	public String findByAccountOwnerName(@PathVariable("name") String partialName) {
-		return "findByAccountOwnerName reachable";
+	public List<AccountDTO> findByAccountOwnerName(@PathVariable("name") String partialName) {
+		return accountServiceClient.searchByOwnerContains(partialName);
 	}
 	
 	@RequestMapping("/customers/findby/number/{customerId}")

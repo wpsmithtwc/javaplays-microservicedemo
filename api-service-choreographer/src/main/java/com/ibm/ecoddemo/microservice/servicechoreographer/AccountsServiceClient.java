@@ -18,7 +18,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
  * @author danielcho
  *
  */
-@Component
+@Component(value="accountsServiceClient")
 public class AccountsServiceClient {
 
 	/* Purpose: RestTemplate
@@ -50,31 +50,17 @@ public class AccountsServiceClient {
 	
 	/* This method will be called when Accounts Service is not available. */
 	public AccountDTO searchByNumberFallback(String accountNumber) {
-		/* setup a fallback empty account */
-		AccountDTO accountNotFound = new AccountDTO();
-		accountNotFound.setId(0);
-		accountNotFound.setAcctType("");
-		accountNotFound.setNumber(accountNumber);
-		accountNotFound.setOwner("Unable to find due to Accounts Service Not Available or Not Found");
-		accountNotFound.setCustomerNo("");
-		accountNotFound.setBalance(BigDecimal.ZERO);
-		
-		TransactionDTO transactionNotFound = new TransactionDTO();
-		transactionNotFound.setId(0);
-		transactionNotFound.setAcctNumber(accountNumber);
-		transactionNotFound.setTransDate("");
-		transactionNotFound.setPostDate("");
-		transactionNotFound.setMerchant("Unalbe to find due to Accounts Service Not Available or Not Found");
-		transactionNotFound.setAmount(BigDecimal.ZERO);
-		accountNotFound.addTransactions(transactionNotFound);
+		AccountDTO accountNotFound = getEmptyAccount();
+		accountNotFound.setNumber("Unable to find due to Accounts Service Not Available or Not Found with account number " + accountNumber);
 		return accountNotFound;
 	}
 
+	@HystrixCommand(fallbackMethod="searchByOwnerContainsFallback")
 	public List<AccountDTO> searchByOwnerContains(String name) {
 		AccountDTO[] accounts = null;
 
 		try {
-			accounts = restTemplate.getForObject(serviceUrl + "/accounts/owner/{name}", AccountDTO[].class, name);
+			accounts = restTemplate.getForObject(serviceUrl + "/searchby/owner/{name}", AccountDTO[].class, name);
 		} catch (HttpClientErrorException e) {
 			// Not Found
 		}
@@ -83,5 +69,31 @@ public class AccountsServiceClient {
 			return null;
 		else
 			return Arrays.asList(accounts);
+	}
+	
+	public List<AccountDTO> searchByOwnerContainsFallback(String name) {
+		AccountDTO accountNotFound = getEmptyAccount();
+		accountNotFound.setOwner("Unable to find due to Accounts Service Not Available or Not Found with owner " + name);
+		return Arrays.asList(accountNotFound);
+	}
+	
+	private AccountDTO getEmptyAccount() {
+		AccountDTO accountNotFound = new AccountDTO();
+		accountNotFound.setId(0);
+		accountNotFound.setAcctType("");
+		accountNotFound.setNumber("");
+		accountNotFound.setOwner("");
+		accountNotFound.setCustomerNo("");
+		accountNotFound.setBalance(BigDecimal.ZERO);
+		
+		TransactionDTO transactionNotFound = new TransactionDTO();
+		transactionNotFound.setId(0);
+		transactionNotFound.setAcctNumber("");
+		transactionNotFound.setTransDate("");
+		transactionNotFound.setPostDate("");
+		transactionNotFound.setMerchant("");
+		transactionNotFound.setAmount(BigDecimal.ZERO);
+		accountNotFound.addTransactions(transactionNotFound);
+		return accountNotFound;
 	}
 }
