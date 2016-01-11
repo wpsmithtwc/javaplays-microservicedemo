@@ -5,15 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/accounts")
-public class AccountsServiceChoreographer {
+@RequestMapping("/customers")
+public class CustomersServiceChoreographer {
 	
 	@RequestMapping("/test")
 	public String testMessage() {
-		return "Accounts Service Choreographer runs properly";
+		return "Customers Service Choreographer runs properly";
 	}
 	
-	@RequestMapping("/findby/number/{accountNumber}")
+	@RequestMapping("/findby/number/{customerNo}")
 	public String findByNumber(@PathVariable("accountNumber") String accountNumber) {
 		return "findByNumber reachable";
 	}
