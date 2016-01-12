@@ -19,4 +19,11 @@ div {
 }
 		
 #tabs { width: 1000px; height: 400px; padding: 0.5em; }
+
+#accountInfo { width: 500px; height: 300px; padding: 0.5em; }
+#accountInfo h3 { text-align: center; margin: 0; }
+
+#customerInfo { width: 500px; height: 300px; padding: 0.5em; }
+#customerInfo h3 { text-align: center; margin: 0; }
+
 .ui-resizable-helper { border: 1px dotted gray; }
