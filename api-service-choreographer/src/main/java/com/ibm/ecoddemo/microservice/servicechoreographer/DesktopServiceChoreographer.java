@@ -20,7 +20,7 @@ public class DesktopServiceChoreographer {
 	
 	@RequestMapping("/accounts/findby/number/{accountNumber}")
 	public AccountDTO findByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
-		return accountsServiceClient.searchByNumber(accountNumber);
+		return accountsServiceClient.searchByAccountNumber(accountNumber);
 	}
 
 	@RequestMapping("/accounts/findby/name/{name}")
@@ -30,7 +30,7 @@ public class DesktopServiceChoreographer {
 	
 	@RequestMapping("/customers/findby/number/{customerNo}")
 	public CustomerDTO findByCustomerId(@PathVariable("customerNo") String customerNo) {
-		return customersServiceClient.searchByNumber(customerNo);
+		return customersServiceClient.searchByCustomerNumber(customerNo);
 	}
 
 	@RequestMapping("/customers/findby/name/{name}")

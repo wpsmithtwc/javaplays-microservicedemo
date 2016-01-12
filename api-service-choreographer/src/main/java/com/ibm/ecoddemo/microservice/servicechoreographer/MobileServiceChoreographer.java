@@ -26,9 +26,9 @@ public class MobileServiceChoreographer {
 	public CustomerAccountDTO findByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
 		/* a request from mobile device fetches both customer and account information from backend processes. */
 		CustomerAccountDTO customerAccount = new CustomerAccountDTO();
-		AccountDTO account = accountsServiceClient.searchByNumber(accountNumber);
+		AccountDTO account = accountsServiceClient.searchByAccountNumber(accountNumber);
 		customerAccount.addAccounts(account);
-		CustomerDTO customer = customersServiceClient.searchByNumber(account.getCustomerNo());
+		CustomerDTO customer = customersServiceClient.searchByCustomerNumber(account.getCustomerNo());
 		BeanUtils.copyProperties(customer, customerAccount);
 		return customerAccount;
 	}
@@ -42,7 +42,7 @@ public class MobileServiceChoreographer {
 		
 		if (!CollectionUtils.isEmpty(accounts)) {
 			for (AccountDTO account : accountsServiceClient.searchByOwnerContains(partialName)) {
-				customer = customersServiceClient.searchByNumber(account.getCustomerNo());
+				customer = customersServiceClient.searchByCustomerNumber(account.getCustomerNo());
 				if (customer != null) {
 					customerAccount = new CustomerAccountDTO();
 					customerAccount.addAccounts(account);

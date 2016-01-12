@@ -42,13 +42,13 @@ public class CustomersServiceClient {
 	 * Hystrix circuit braker.  The circuit breaker calculates when to open and close the circuit, and what
 	 * to do in case of failure.
 	 * */
-	@HystrixCommand(fallbackMethod="searchByNumberFallback")
-	public CustomerDTO searchByNumber(String customerNo) {
+	@HystrixCommand(fallbackMethod="searchByCustomerNumberFallback")
+	public CustomerDTO searchByCustomerNumber(String customerNo) {
 		return restTemplate.getForObject(serviceUrl + "/searchby/number/{customerNo}", CustomerDTO.class, customerNo);
 	}
 	
 	/* This method will be called when Customers Service is not available. */
-	public CustomerDTO searchByNumberFallback(String customerNo) {
+	public CustomerDTO searchByCustomerNumberFallback(String customerNo) {
 		CustomerDTO customerNotFound = new CustomerDTO();
 		customerNotFound.setCustomerNo("Unable to find due to Customers Service Not Available or Not Found with customer ID " + customerNo);
 		return customerNotFound;

@@ -42,13 +42,13 @@ public class AccountsServiceClient {
 	 * Hystrix circuit braker.  The circuit breaker calculates when to open and close the circuit, and what
 	 * to do in case of failure.
 	 * */
-	@HystrixCommand(fallbackMethod="searchByNumberFallback")
-	public AccountDTO searchByNumber(String accountNumber) {
+	@HystrixCommand(fallbackMethod="searchByAccountNumberFallback")
+	public AccountDTO searchByAccountNumber(String accountNumber) {
 		return restTemplate.getForObject(serviceUrl + "/searchby/number/{accountNumber}", AccountDTO.class, accountNumber);
 	}
 	
 	/* This method will be called when Accounts Service is not available. */
-	public AccountDTO searchByNumberFallback(String accountNumber) {
+	public AccountDTO searchByAccountNumberFallback(String accountNumber) {
 		AccountDTO accountNotFound = new AccountDTO();
 		accountNotFound.addTransactions(new TransactionDTO());
 		accountNotFound.setNumber("Unable to find due to Accounts Service Not Available or Not Found with account number " + accountNumber);
