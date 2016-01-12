@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,16 +38,19 @@ public class MobileServiceChoreographer {
 		List<CustomerAccountDTO> customerAccounts = new ArrayList<CustomerAccountDTO>(0);
 		CustomerAccountDTO customerAccount = null;
 		CustomerDTO customer = null;
-		for (AccountDTO account : accountsServiceClient.searchByOwnerContains(partialName)) {
-			customer = customersServiceClient.searchByNumber(account.getCustomerNo());
-			if (customer != null) {
-				customerAccount = new CustomerAccountDTO();
-				customerAccount.addAccounts(account);
-				BeanUtils.copyProperties(customer, customerAccount);
-				customerAccounts.add(customerAccount);
+		List<AccountDTO> accounts = accountsServiceClient.searchByOwnerContains(partialName);
+		
+		if (!CollectionUtils.isEmpty(accounts)) {
+			for (AccountDTO account : accountsServiceClient.searchByOwnerContains(partialName)) {
+				customer = customersServiceClient.searchByNumber(account.getCustomerNo());
+				if (customer != null) {
+					customerAccount = new CustomerAccountDTO();
+					customerAccount.addAccounts(account);
+					BeanUtils.copyProperties(customer, customerAccount);
+					customerAccounts.add(customerAccount);
+				}
 			}
 		}
-		
 		
 		return customerAccounts;
 	}
