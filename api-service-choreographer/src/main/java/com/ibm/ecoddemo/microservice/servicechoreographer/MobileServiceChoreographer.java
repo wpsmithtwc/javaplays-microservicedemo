@@ -43,10 +43,12 @@ public class MobileServiceChoreographer {
 				customerAccount = new CustomerAccountDTO();
 				customerAccount.addAccounts(account);
 				BeanUtils.copyProperties(customer, customerAccount);
+				customerAccounts.add(customerAccount);
 			}
 		}
 		
 		
 		return customerAccounts;
 	}
+	
 }
