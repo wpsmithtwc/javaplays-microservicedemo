@@ -2,7 +2,6 @@ package com.ibm.ecoddemo.microservice.accountsui;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -23,12 +22,6 @@ public class WebAccountsController {
 	 * View resolver managing templates for html & xhtml, Allow Spring EL etc.
 	 * */
 
-	@Autowired
-	protected RestAccountsServiceClient accountsService;
-
-	public WebAccountsController(RestAccountsServiceClient accountsService) {
-		this.accountsService = accountsService;
-	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
