@@ -5,6 +5,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.PropertySource;
 
+/**
+ * 
+ * @author danielcho
+ *
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 @PropertySource("classpath:servicenames.properties")

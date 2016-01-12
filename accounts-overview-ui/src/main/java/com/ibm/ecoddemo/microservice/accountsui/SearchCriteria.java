@@ -3,6 +3,11 @@ package com.ibm.ecoddemo.microservice.accountsui;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 
+/**
+ * 
+ * @author danielcho
+ *
+ */
 public class SearchCriteria {
 	private String accountNumber;
 
