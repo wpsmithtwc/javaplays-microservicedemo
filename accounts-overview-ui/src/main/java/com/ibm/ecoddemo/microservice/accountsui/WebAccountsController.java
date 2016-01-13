@@ -72,7 +72,7 @@ public class WebAccountsController {
 		model.addAttribute("search", name);
 		if (accounts != null)
 			model.addAttribute("accounts", accounts);
-		return "accounts";
+		return "account";
 	}
 
 	@RequestMapping(value = "/accounts/search", method = RequestMethod.GET)
