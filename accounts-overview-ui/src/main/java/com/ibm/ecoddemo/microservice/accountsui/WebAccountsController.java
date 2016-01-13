@@ -1,7 +1,5 @@
 package com.ibm.ecoddemo.microservice.accountsui;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -68,10 +66,7 @@ public class WebAccountsController {
 
 	@RequestMapping("/lookupby/owner/{name}")
 	public String ownerSearch(Model model, @PathVariable("name") String name) {
-		List<AccountDTO> accounts = accountsService.byOwnerContains(name);
-		model.addAttribute("search", name);
-		if (accounts != null)
-			model.addAttribute("accounts", accounts);
+		
 		return "account";
 	}
 
