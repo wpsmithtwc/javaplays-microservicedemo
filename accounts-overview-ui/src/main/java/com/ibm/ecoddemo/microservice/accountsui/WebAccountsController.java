@@ -66,6 +66,25 @@ public class WebAccountsController {
 
 	@RequestMapping("/lookupby/owner/{name}")
 	public String ownerSearch(Model model, @PathVariable("name") String name) {
+		AccountDTO account = null;
+		CustomerDTO customer = null;
+		
+		try {
+			AccountDTO[] accounts = restTemplate.getForObject(apiGatewayServiceUrl +
+					"/api/choreographer/accounts/findby/name/{name}",
+					AccountDTO[].class, name);
+			account = accounts[0];
+			
+			CustomerDTO[] customers = restTemplate.getForObject(apiGatewayServiceUrl +
+						"/api/choreographer/customers/findby/name/{name}",
+						CustomerDTO[].class, name);
+			customer = customers[0];
+		} catch (NullPointerException npe) {
+			/* add empty account and customer when exception is thrown from the backend processes */
+			account = new AccountDTO();
+			customer = new CustomerDTO();
+		}
+		model.addAttribute("account", account).addAttribute("customer", customer);
 		
 		return "account";
 	}
