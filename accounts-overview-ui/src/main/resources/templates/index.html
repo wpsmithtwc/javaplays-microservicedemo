@@ -10,7 +10,31 @@
 	<script src="../static/js/demo.js" th:src="@{/api/demo/js/demo.js}"></script>
   	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
   	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  	<style></style>
+  	<style>
+  		.ui-tooltip-content {
+			font-size: 0.6875em;
+		  	font-family: Arial, Helvetica, sans-serif;
+		  	font-weight: normal;
+		}
+		.ui-tooltip {
+		  	padding: 10px 20px;
+		  	border-radius: 10px;
+		  	background: white;
+		  	color: black;
+		  	box-shadow: 0 0 7px black;
+		}
+		  		
+		div {
+		    font-size: 0.7500em;
+		    font-family: Arial, Helvetica, sans-serif;
+		    font-style: normal;
+		    font-weight: normal;
+		}
+				
+		#tabs { width: 1000px; height: 400px; padding: 0.5em; }
+		
+		.ui-resizable-helper { border: 1px dotted gray; }
+  	</style>
   	<!-- TOOL TIP SETUP -->
   	<script>
   		$(document).ready(function() {

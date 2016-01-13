@@ -10,16 +10,110 @@
 	<script src="../static/js/demo.js" th:src="@{/api/demo/js/demo.js}"></script>
   	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
   	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<style></style>
+  	
+	<style>
+		.ui-tooltip-content {
+			font-size: 0.6875em;
+  			font-family: Arial, Helvetica, sans-serif;
+  			font-weight: normal;
+		}
+		.ui-tooltip {
+  			padding: 10px 20px;
+  			border-radius: 10px;
+		  	background: white;
+		  	color: black;
+		  	box-shadow: 0 0 7px black;
+		}
+  		
+		div {
+		    font-size: 0.7500em;
+		    font-family: Arial, Helvetica, sans-serif;
+		    font-style: normal;
+		    font-weight: normal;
+		}
+
+		#accountInfo { width: 400px; height: 300px; padding: 0.5em; }
+		#accountInfo h3 { text-align: center; margin: 0; }
+		
+		#customerInfo { width: 400px; height: 300px; padding: 0.5em; }
+		#customerInfo h3 { text-align: center; margin: 0; }
+		
+		#transactionsInfo { width: 820px; height: 400px; padding: 0.5em; }
+		#transactionsInfo h3 { text-align: center; margin: 0; }
+		
+		.ui-resizable-helper { border: 1px dotted gray; }
+		
+		dl dt {
+		    background:#E8E8E8;
+		    color:#000000;
+		    width: 200px;
+		  	margin: 1px 0;
+		  	padding: 1px 0;
+		}
+		
+		#explainUnderTheHood { width: 820px; height: 150px; padding: 0.4em; position: relative; }
+  		#explainUnderTheHood h3 { margin: 0; padding: 0.4em; text-align: center; }
+		
+		#transctionList {
+			font-family:Arial, Helvetica, sans-serif;
+			font-size:11px;
+			border: 1px solid #ccc;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		#transctionList tr {
+		  	border: 1px solid #ddd;
+		  	padding: 5px;
+		}
+
+		#transctionList th,
+		#transctionList td {
+		  	padding: 10px;
+		  	text-align: center;
+		}
+
+		#transctionList th {
+		  	text-transform: uppercase;
+		  	letter-spacing: 1px;
+		}
+		
+	</style>
+	
   	<script>
   		$(document).ready(function() {
+  			$( document ).tooltip( {
+  				track: true,
+  				show: {effect: "fade"}
+  			});
+  			
     		$( "#accountInfo" ).resizable({
     			animate: true,
+    			minHeight: 300,
+    			minWidth: 300
     		});
     		
     		$( "#customerInfo" ).resizable({
     			animate: true,
+    			minHeight: 300,
+    			minWidth: 300
     		});
+    		
+    		$( "#transactionsInfo" ).resizable({
+    			animate: true,
+    			minHeight: 300,
+    			minWidth: 608
+    		});
+    		
+    		$( "#accountInfo" ).draggable();
+    		
+    		$( "#customerInfo" ).draggable();
+    		
+    		$( "#transactionsInfo" ).draggable();
+    	
   		});
   </script>
 </head>
@@ -27,13 +121,57 @@
 <body>
 	<h1>Account Overview</h1>
 	
+	<!-- DEMO Information -->
+	<p style="font-style:italic">
+		@IBM Cloud EcoD, 2016: Demo built on Microservice Architecture powered by Spring Cloud and Boot on IBM Bluemix <br/>
+		Contributers: Daniel Cho, danielcho@us.ibm.com
+	</p>
+	
+	<!-- FLOW INFORMATION -->
+		<script>
+			$(document).ready(function() {
+				$( "#explainUnderTheHood" ).hide();
+	    		
+	    		$( "#findOutUnderTheHood" ).click(function() {
+	    			$( "#explainUnderTheHood" ).show("blind");
+	    		});
+			});
+		</script>
+		<p><button id="findOutUnderTheHood"><strong>Click</strong></button> to find out what just happened.</p>
+		
+		<div id="explainUnderTheHood" class="ui-widget-content ui-corner-all">
+  			<h3 class=" ui-widget-header ui-corner-all">Under the Hood</h3>
+  			<ul>
+				<li>Individual widget data are fetched via API Gateway and Service Choreographer (systems of engagement) from Accounts and Customers services 
+				    (systems of records) respectively.</li>
+				<li>This page is optimized for Desktop client, therefore, API Gateway routes to Desktop Service Choreographer.</li>
+				<li>Mobile clients will route via API Gateway, yet, use Mobile Service Choreographer defined service orchestration that is <br/>
+				optimized to access backend processes with minimum calls to fetch data needed.
+				</li>
+			</ul>
+		</div>
+	
+	
+	<!-- ACCOUNT SEARCH -->
+	<p>
+		<button id="searchAccount"> <strong>Search Account</strong> </button>
+	</p>
+	
+	<!-- ACCOUNT & CUSTOMER VIEW -->
 	<table>
 		<tbody>
 			<tr>
 				<td>
-					<div id="accountInfo" class="ui-widget-content">
-  						<h3 class="ui-widget-header">Account View</h3>
+					<div id="accountInfo" 
+						class="ui-widget-content ui-corner-all" 
+						title="Account Widget is draggable, resizable, and data fetched via API Gateway and Desktop Service Choreographer 
+							   from Accounts servcie.  All microservices are deployed at different server locations, yet served through a
+							   single entry point API Gateway to abstract individual service routing details, apply security, optimize backend 
+							   processes access, and avoid Cross Origina Resource Sharing issue from browsers.">
+  						<h3 class="ui-widget-header ui-corner-all">Account View</h3>
   						<dl>
+  							<dt><b>Account Type</b></dt>
+							<dd th:text="${account.acctType}">account type</dd>
 							<dt><b>Number</b></dt>
 							<dd th:text="${account.number}">number</dd>
 							<dt><b>Customer</b></dt>
@@ -44,21 +182,70 @@
 					</div>
 				</td>
 				<td>
-					<div id="customerInfo" class="ui-widget-content">
-				  		<h3 class="ui-widget-header">Customer View</h3>
+					<div id="customerInfo" 
+						class="ui-widget-content ui-corner-all"
+						title="Customer Widget is draggable, resizable, and data fetched via API Gateway and Desktop Service Choreographer 
+							   from Customers servcie.  All microservices are deployed at different server locations, yet served through a
+							   single entry point API Gateway to abstract individual service routing details, apply security, optimize backend 
+							   processes access, and avoid Cross Origina Resource Sharing issue from browsers.">
+				  		<h3 class="ui-widget-header ui-corner-all">Customer View</h3>
 				  		<dl>
-							<dt><b>Number</b></dt>
-							<dd th:text="${account.number}">number</dd>
-							<dt><b>Customer</b></dt>
-							<dd th:text="${account.owner}">owner</dd>
-							<dt><b>Balance</b></dt>
-							<dd th:text="${account.balance}">balance</dd>
+				  			<dt><b>Customer ID</b></dt>
+							<dd th:text="${customer.customerNo}">name</dd>
+							<dt><b>Name</b></dt>
+							<dd th:text="${customer.name}">name</dd>
+							<dt><b>Address</b></dt>
+							<dd th:text="${customer.address}">address</dd>
+							<dt><b>City</b></dt>
+							<dd th:text="${customer.city}">city</dd>
+							<dt><b>State</b></dt>
+							<dd th:text="${customer.state}">state</dd>
+							<dt><b>Zip Code</b></dt>
+							<dd th:text="${customer.zipCode}">zip code</dd>
+							<dt><b>Phone</b></dt>
+							<dd th:text="${customer.phone}">phone</dd>
+							<dt><b>Email</b></dt>
+							<dd th:text="${customer.email}">email</dd>
 						</dl>
 					</div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+	
+	<!-- TRANSACTIONS VIEW -->
+	<div id="transactionsInfo" 
+		class="ui-widget-content ui-corner-all"
+		title="Transaction Widget is draggable, resizable, and data fetched via API Gateway and Desktop Service Choreographer 
+							   from Accounts servcie.  All microservices are deployed at different server locations, yet served through a
+							   single entry point API Gateway to abstract individual service routing details, apply security, optimize backend 
+							   processes access, and avoid Cross Origina Resource Sharing issue from browsers.">
+		<h3 class="ui-widget-header ui-corner-all">Transactions View</h3>
+		<p/>
+			<table id="transctionList">
+				<thead>
+					<tr>
+						<th><b>Item</b></th>
+						<th><b>Account</b></th>
+						<th><b>Transaction Date</b></th>
+						<th><b>Post Date</b></th>
+						<th><b>Merchant</b></th>
+						<th><b>Amount</b></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="trans,iterationStatus : ${account.transactions}">
+						<td th:text="${iterationStatus.count}">1</td>
+        				<td th:text="${trans.acctNumber}">account number</td>
+						<td th:text="${trans.transDate}">transaction date</td>
+        				<td th:text="${trans.postDate}">posting date</td>
+       	 				<td th:text="${trans.merchant}">merchant</td>	
+       	 				<td th:text="${trans.amount}">amount</td>
+					</tr>
+				</tbody>
+			</table>
+				
+	</div>
 
 	<div style="height: 2cm">&nbsp;</div>
 

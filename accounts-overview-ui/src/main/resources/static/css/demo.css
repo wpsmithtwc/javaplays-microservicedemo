@@ -1,29 +1,69 @@
 .ui-tooltip-content {
 	font-size: 0.6875em;
-  	font-family: Arial, Helvetica, sans-serif;
-  	font-weight: normal;
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: normal;
 }
 .ui-tooltip {
-  	padding: 10px 20px;
-  	border-radius: 10px;
+			padding: 10px 20px;
+			border-radius: 10px;
   	background: white;
   	color: black;
   	box-shadow: 0 0 7px black;
 }
-  		
+		
 div {
     font-size: 0.7500em;
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: normal;
 }
-		
-#tabs { width: 1000px; height: 400px; padding: 0.5em; }
 
-#accountInfo { width: 500px; height: 300px; padding: 0.5em; }
+#accountInfo { width: 400px; height: 300px; padding: 0.5em; }
 #accountInfo h3 { text-align: center; margin: 0; }
 
-#customerInfo { width: 500px; height: 300px; padding: 0.5em; }
+#customerInfo { width: 400px; height: 300px; padding: 0.5em; }
 #customerInfo h3 { text-align: center; margin: 0; }
 
+#transactionsInfo { width: 820px; height: 400px; padding: 0.5em; }
+#transactionsInfo h3 { text-align: center; margin: 0; }
+
 .ui-resizable-helper { border: 1px dotted gray; }
+
+dl dt {
+    background:#E8E8E8;
+    color:#000000;
+    width: 200px;
+  	margin: 1px 0;
+  	padding: 1px 0;
+}
+
+#explainUnderTheHood { width: 820px; height: 150px; padding: 0.4em; position: relative; }
+#explainUnderTheHood h3 { margin: 0; padding: 0.4em; text-align: center; }
+
+
+#transctionList {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	border: 1px solid #ccc;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#transctionList tr {
+  	border: 1px solid #ddd;
+  	padding: 5px;
+}
+
+#transctionList th,
+#transctionList td {
+  	padding: 10px;
+  	text-align: center;
+}
+
+#transctionList th {
+  	text-transform: uppercase;
+  	letter-spacing: 1px;
+}
