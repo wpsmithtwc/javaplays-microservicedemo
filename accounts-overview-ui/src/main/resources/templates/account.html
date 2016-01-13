@@ -83,6 +83,16 @@
 		  	background: #F0FFFF
 		}
 		
+		#searchAccountDialog {
+			font-family:Arial, Helvetica, sans-serif; 
+			font-size:11px;
+		}
+		label, input { display:block;}
+    	input.text { margin-bottom:12px; width:95%; padding: .4em;}
+    	fieldset { padding:0; border:0; margin-top:25px; }
+    	.ui-dialog .ui-state-error { padding: .3em; }
+    	.validateTips { border: 1px solid transparent; padding: 0.3em; }
+    
 	</style>
 	
   	<script>
@@ -155,9 +165,75 @@
 	
 	
 	<!-- ACCOUNT SEARCH -->
+	<script>
+		$(document).ready(function() {
+			var dialog, 
+			form,
+			number = $( "#accountNumber" ),
+			name = $( "#accountOwnerName" );
+			
+			function getAccount() {
+				dialog.dialog( "close" );
+				
+				var url, formValue;
+				if ($( "#accountNumber").val()) {
+					url = "/api/demo/accounts/lookupby/number/";
+					formValue = $( "#accountNumber").val();
+				}else {
+					url = "/api/demo/accounts/lookupby/owner/";
+					formValue = $( "#accountOwnerName").val();
+				}
+				window.location.replace(url + formValue);
+				return true;
+			}
+			
+			dialog = $( "#searchAccountDialog" ).dialog({
+				autoOpen: false,
+				show: 'blind',
+				hide: 'blind',
+				height: 300,
+				width: 350,
+				modal: true,
+				buttons: {
+					"Search Account": function() {
+						$( "#searchForm" ).submit();
+					},
+					Cancel: function() {
+						dialog.dialog( "close" );
+					}
+				}, 
+				close: function() {
+					form[ 0 ].reset();
+				}
+			});
+			
+			form = dialog.find( "form" ).on( "submit", function( event ) {
+				event.preventDefault();
+				getAccount();
+			});
+			
+			$( "#searchAccount" ).on( "click", function() {
+				dialog.dialog( "open" );
+			});
+		});
+	</script>
 	<p>
 		<button id="searchAccount"> <strong>Search Account</strong> </button>
 	</p>
+	<div id="searchAccountDialog" title="Search Account">
+		<p class="validateTips">Please provide Account Number or Account Owner Name. <br/> At least one is required.</p>
+		<form id="searchForm">
+		    <fieldset>
+		    	<label for="accountNumber"><strong>Account Number</strong></label>
+		      	<input type="text" name="accountNumber" id="accountNumber" class="text ui-widget-content ui-corner-all" title="Suggest between '111111111' and '111111115'."/>
+		      	<p>OR,</p>
+		      	<label for="accountOwnerName"><strong>Account Owner Name</strong></label>
+		      	<input type="text" name="accountOwnerName" id="accountOwnerName" class="text ui-widget-content ui-corner-all" title="Suggest 'daniel', 'bala', 'kal', 'edward', or 'david'"/>
+		      	<!-- Allow form submission with keyboard without duplicating the dialog button -->
+		      	<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
+		    </fieldset>
+  		</form>
+	</div>
 	
 	<!-- ACCOUNT & CUSTOMER VIEW -->
 	<table>
@@ -252,7 +328,7 @@
 	<div style="height: 2cm">&nbsp;</div>
 
 	<div style="text-align: center">
-		<a th:href="@{/}">Home</a> | <a th:href="@{/accounts/search}">Account Search</a>
+		| <a th:href="@{/api/demo}">Home</a> |
 	</div>
 
 </body>
