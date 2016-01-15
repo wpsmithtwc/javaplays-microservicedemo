@@ -1,6 +1,6 @@
 # Service Description
 info: 
-  component: Confugration Service that pulls versioned configurations from GitHub for each microservice in distributed mode
+  component: Confugration Service that pulls versioned configurations from GitHub for each microservice in distributed mode.
 
 # Configuration Service Information
 spring:
