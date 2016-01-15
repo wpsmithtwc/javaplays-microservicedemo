@@ -4,7 +4,7 @@ spring:
     name: discovery-service
   cloud:
     config:
-      uri: http://localhost:1111  # Talks to configuration service to get discovery-service.yml from GitHub to reaplace application.yml.
+      uri: configuration-service.mybluemix.net  # Talks to configuration service to get discovery-service.yml from GitHub to reaplace application.yml.
       # for cloud foundry deploy: uri: ${vcap.services.configserver.credentials.uri:http://user:password@localhost:8888}
       fail-fast: true  # Fail the client startup if configuration service is unreachable with an exception.
   thymeleaf:
