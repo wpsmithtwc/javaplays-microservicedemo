@@ -1,3 +1,3 @@
 spring:
   application:
-    name: configuration-service-dc
+    name: configuration-service
