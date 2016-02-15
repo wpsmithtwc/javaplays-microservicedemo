@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: http://github.com/danielyhcho/javaplays-microservicedemo-config
+          uri: https://github.com/danielyhcho/javaplays-microservicedemo-config
   
 # HTTP Server
 server:
