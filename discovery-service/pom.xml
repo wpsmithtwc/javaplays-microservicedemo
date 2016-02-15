@@ -40,11 +40,6 @@ Author:  Daniel Cho, danielcho@us.ibm.com
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-		<!-- configuration server integration -->
-		<dependency>
-        	<groupId>org.springframework.cloud</groupId>
-        	<artifactId>spring-cloud-starter-config</artifactId>
-    	</dependency>
     	<!-- Declare not to use embedded Tomcat to run in Bluemix provided cocntainer -->
 		<dependency>
             <groupId>org.springframework.boot</groupId>
