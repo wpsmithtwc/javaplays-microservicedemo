@@ -4,3 +4,7 @@ spring:
     name: discovery-service
   thymeleaf:
     enabled: false
+  cloud:
+    config:
+      uri: ${vcap.services.config-service.credentials.uri:http://localhost:1111/}
+      fail-fast: true
