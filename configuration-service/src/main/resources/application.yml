@@ -8,9 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/danielyhcho/javaplays-microservicedemo-config
-          username: danielyhcho
-          password: Success1
+          uri: http://github.com/danielyhcho/javaplays-microservicedemo-config
   
 # HTTP Server
 server:
