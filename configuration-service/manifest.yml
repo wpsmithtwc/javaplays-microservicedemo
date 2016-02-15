@@ -1,5 +1,0 @@
-applications:
-- name: config-service-dc
-  memory: 256M
-  instances: 1
-  buildpack: https://github.com/cloudfounddry/java-buildpack
