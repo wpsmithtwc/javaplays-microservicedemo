@@ -10,6 +10,9 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  * @author danielcho
  * 
  * PURPOSE
+ * 1. Register and discover all participating microservices collaborating in the same cluster.
+ * 2. Register with logical names used to call each other.
+ * 3. Maintains the list of service instances with end points.
  * 
  * DRIVING FORCE
  * 

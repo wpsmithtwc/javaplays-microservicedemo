@@ -2,3 +2,42 @@
 #  This configuration content will be replaced with discovery-service.yml 
 #  from the central configuration management site, GitHub.
 #  https://github.com/danielyhcho/javaplays-microservicedemo-config
+
+# Service Description
+info:
+  component: Discovery service to enable microservice registry and discovery by logical name by consumer applications.
+  
+# HTTP server port
+server:
+  port: 2222
+
+# Discovery Service Configuration - Eureka service registry and discovery component
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]:localhost}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      
+      
+#  Peer Awareness in case run the same server on 2 hosts by running it in different Spring profile.
+#  Valuable when across cloud service providers or between csps and on-premises private cloud.
+#spring:
+#  profiles: peer1
+#eureka:
+#  instance:
+#    hostname: peer1
+#  client:
+#    serviceUrl:
+#      defaultZone: http://peer2/eureka/
+
+#spring:
+#  profiles: peer2
+#eureka:
+#  instance:
+#    hostname: peer2
+#  client:
+#    serviceUrl:
+#      defaultZone: http://peer1/eureka/
