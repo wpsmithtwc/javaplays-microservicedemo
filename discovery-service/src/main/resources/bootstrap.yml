@@ -6,6 +6,5 @@ spring:
     enabled: false
   cloud:
     config:
-      #uri: ${vcap.services.config-service.credentials.uri:http://localhost:1111}
-      uri: http://configservice-danielcho.mybluemix.net
+      uri: ${vcap.services.config-service.credentials.uri:http://localhost:1111}
       fail-fast: true
