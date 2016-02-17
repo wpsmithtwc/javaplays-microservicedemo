@@ -6,11 +6,6 @@ spring:
     enabled: false
   thymeleaf:
     cache: false
-  cloud:
-    config:
-      discovery:
-        serviceId: configuration-service
-      fail-fast: true
 
 # Discovery server connection bound with discovery-service user defined service
 eureka:
