@@ -30,7 +30,8 @@ zuul:
     # api_gateway_server/api/discovery request routes to the Eureka service registry and discovery monitoring site
     discovery_service:
       path: /discovery/**
-      url: ${vcap.services.discovery-service.credentials.uri:http://localhost:1111}
+      #url: ${vcap.services.discovery-service.credentials.uri:http://localhost:1111/}
+      url: http://discoveryservice-danielcho.mybluemix.net
     # api_gateway_server/api/demo/** requests route to Accounts Overview Demo
     accounts_overview: 
       path: /demo/**
