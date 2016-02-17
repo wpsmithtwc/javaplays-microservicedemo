@@ -36,6 +36,11 @@ Author:  Daniel Cho, danielcho@us.ibm.com
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
+		<!-- spring Netflix OSS Eureka service registration and discovery integration -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
 		<!-- Declare not to use embedded Tomcat to run in Bluemix provided cocntainer -->
 		<dependency>
             <groupId>org.springframework.boot</groupId>
