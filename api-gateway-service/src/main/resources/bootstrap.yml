@@ -6,14 +6,12 @@ spring:
     enabled: false
   thymeleaf:
     cache: false
-  cloud:
-    config:
-      uri: http://configservice-danielcho.mybluemix.net/
-      #enabled: true
-      failFast: true
+  #cloud:
+    #config:
+      #failFast: true
       #discovery:
         #enabled: true
-        #serviceId: CONFIGURATION-SERVICE
+        #serviceId: configuration-service
   
 
 # Discovery server connection bound with discovery-service user defined service
