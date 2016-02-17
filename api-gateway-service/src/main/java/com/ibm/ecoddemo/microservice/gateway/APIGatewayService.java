@@ -2,14 +2,21 @@ package com.ibm.ecoddemo.microservice.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
-@EnableDiscoveryClient
 @EnableZuulProxy
-public class APIGatewayService {
+@EnableDiscoveryClient
+public class APIGatewayService extends SpringBootServletInitializer {
 
+	@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(APIGatewayService.class);
+    }
+	
 	/*
 	 * API Gateway
 	 * 1.  UI applications to proxy all calls to a single backend entry.

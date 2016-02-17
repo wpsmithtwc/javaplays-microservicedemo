@@ -4,18 +4,14 @@
 	<groupId>com.ibm.ecoddemo</groupId>
 	<artifactId>api-gateway-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-parent</artifactId>
-		<version>Angel.SR3</version>
+		<version>Angel.SR6</version>
 	</parent>
 
-	<properties>
-		<start-class>com.ibm.ecoddemo.microservice.gateway.APIGatewayService</start-class>
-	</properties>
-	
 	<dependencies>
 		<!-- spring cloud integration-->
 		<dependency>
@@ -45,8 +41,14 @@
 		<!-- spring Netflix OSS Eureka service registration and discovery integration -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
+		<!-- Declare not to use embedded Tomcat to run in Bluemix provided cocntainer -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 		<!-- spring security integration
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

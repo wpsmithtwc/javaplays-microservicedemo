@@ -1,4 +1,4 @@
-# Circuit Braker Dashboard service information
+# API Gateway service information
 spring:
   application:
     name: api-gateway-service
@@ -8,6 +8,23 @@ spring:
     cache: false
   cloud:
     config:
-      uri: http://localhost:1111  # Talks to configuration service to get api-gateway-service.yml from GitHub to reaplace application.yml.
-      # for cloud foundry deploy: uri: ${vcap.services.configserver.credentials.uri:http://user:password@localhost:8888}
-      fail-fast: true  # Fail the client startup if configuration service is unreachable with an exception.
+      discovery:
+        service-id: configuration-service
+      fail-fast: true
+
+# Discovery server connection bound with discovery-service user defined service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.discovery-service.credentials.uri:http://localhost:1111/eureka/}
+  instance:
+    hostname: ${vcap.application.uris[0]:localhost}
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+      
+---
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    nonSecurePort: 80
