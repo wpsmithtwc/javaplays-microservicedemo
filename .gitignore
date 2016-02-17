@@ -7,3 +7,8 @@ target/
 
 # ignore all files ending with ~
 *~ 
+
+.DS_Store
+.project
+.classpath
+.springBeans

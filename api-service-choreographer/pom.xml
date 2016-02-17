@@ -10,7 +10,7 @@
   <parent>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-parent</artifactId>
-		<version>Angel.SR3</version>
+		<version>Angel.SR6</version>
 	</parent>
 
 	<properties>
@@ -45,7 +45,7 @@
 		<!-- spring Netflix OSS Eureka service registration and discovery integration -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 		<!-- spring Netflix OSS Hystrix circuit braker integration -->
 		<dependency>
