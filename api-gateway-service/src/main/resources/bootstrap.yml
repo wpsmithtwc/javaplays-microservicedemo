@@ -8,6 +8,7 @@ spring:
     cache: false
   cloud:
     config:
+      label: master
       enabled: true
       failFast: true
       discovery:
