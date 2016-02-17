@@ -8,11 +8,12 @@ spring:
     cache: false
   cloud:
     config:
-      enabled: true
+      uri: http://configservice-danielcho.mybluemix.net/
+      #enabled: true
       failFast: true
-      discovery:
-        enabled: true
-        serviceId: CONFIGURATION-SERVICE
+      #discovery:
+        #enabled: true
+        #serviceId: CONFIGURATION-SERVICE
   
 
 # Discovery server connection bound with discovery-service user defined service
