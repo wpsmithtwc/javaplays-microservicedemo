@@ -6,12 +6,12 @@ spring:
     enabled: false
   thymeleaf:
     cache: false
-  #cloud:
-    #config:
-      #failFast: true
-      #discovery:
-        #enabled: true
-        #serviceId: configuration-service
+  cloud:
+    config:
+      failFast: true
+      discovery:
+        enabled: true
+        serviceId: configuration-service
   
 
 # Discovery server connection bound with discovery-service user defined service
