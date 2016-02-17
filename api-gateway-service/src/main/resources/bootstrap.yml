@@ -9,7 +9,7 @@ spring:
   cloud:
     config:
       discovery:
-        service-id: CONFIGURATION-SERVICE
+        serviceId: configuration-service
       fail-fast: true
 
 # Discovery server connection bound with discovery-service user defined service
